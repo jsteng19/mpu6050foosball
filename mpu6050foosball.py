@@ -137,12 +137,12 @@ def setCursor(x,y):
  
  
 def InitMPU():
-bus.write_byte_data(Device_Address, DIV, 7)
-bus.write_byte_data(Device_Address, PWR_M, 1)
-bus.write_byte_data(Device_Address, CONFIG, 0)
-bus.write_byte_data(Device_Address, GYRO_CONFIG, 24)
-bus.write_byte_data(Device_Address, INT_EN, 1)
-time.sleep(1)
+    bus.write_byte_data(Device_Address, DIV, 7)
+    bus.write_byte_data(Device_Address, PWR_M, 1)
+    bus.write_byte_data(Device_Address, CONFIG, 0)
+    bus.write_byte_data(Device_Address, GYRO_CONFIG, 24)
+    bus.write_byte_data(Device_Address, INT_EN, 1)
+    time.sleep(1)
  
 def display(x,y,z):
       x=x*100
@@ -163,31 +163,31 @@ def display(x,y,z):
       Print(str(z))
       Print("   ")
  
-      print x
-      print y
-      print z
+      print (x)
+      print (y)
+      print (z)
  
  
 def readMPU(addr):
-high = bus.read_byte_data(Device_Address, addr)
-low = bus.read_byte_data(Device_Address, addr+1)
-value = ((high << 8) | low)
-if(value > 32768):
-value = value - 65536
-return value
-def accel():
-x = readMPU(ACCEL_X)
-y = readMPU(ACCEL_Y)
-z = readMPU(ACCEL_Z)
- 
-Ax = (x/16384.0-AxCal) 
-Ay = (y/16384.0-AyCal) 
-Az = (z/16384.0-AzCal)
- 
-#print "X="+str(Ax)
-display(Ax,Ay,Az)
-time.sleep(.01)
- 
+    high = bus.read_byte_data(Device_Address, addr)
+    low = bus.read_byte_data(Device_Address, addr+1)
+    value = ((high << 8) | low)
+    if(value > 32768):
+        value = value - 65536
+    return value
+    def accel():
+        x = readMPU(ACCEL_X)
+        y = readMPU(ACCEL_Y)
+        z = readMPU(ACCEL_Z)
+     
+    Ax = (x/16384.0-AxCal) 
+    Ay = (y/16384.0-AyCal) 
+    Az = (z/16384.0-AzCal)
+     
+    #print "X="+str(Ax)
+    display(Ax,Ay,Az)
+    time.sleep(.01)
+     
 def gyro():
       global GxCal
       global GyCal
@@ -206,7 +206,7 @@ def temp():
   tempRow=readMPU(TEMP)
   tempC=(tempRow / 340.0) + 36.53
   tempC="%.2f" %tempC
-  print tempC
+  print (tempC)
   setCursor(0,0)
   Print("Temp: ")
   Print(str(tempC))
@@ -232,9 +232,9 @@ def calibrate():
   AyCal = y/16384.0
   AzCal = z/16384.0
   
-  print AxCal
-  print AyCal
-  print AzCal
+  print (AxCal)
+  print (AyCal)
+  print (AzCal)
  
   global GxCal
   global GyCal
@@ -253,9 +253,9 @@ def calibrate():
   GyCal = y/131.0
   GzCal = z/131.0
  
-  print GxCal
-  print GyCal
-  print GzCal
+  print (GxCal)
+  print (GyCal)
+  print (GzCal)
  
  
 begin();
